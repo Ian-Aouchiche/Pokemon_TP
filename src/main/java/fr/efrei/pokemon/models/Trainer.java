@@ -1,8 +1,8 @@
 package fr.efrei.pokemon.models;
 
 import jakarta.persistence.*;
-
 import java.util.List;
+import java.util.Set;
 
 @Entity
 public class Trainer {
@@ -16,6 +16,11 @@ public class Trainer {
 	@OneToMany
 	private List<Pokemon> team;
 
+	// Ajout d'une collection pour les combats
+	@OneToMany(mappedBy = "trainer")
+	private Set<Combat> combats; // Relation avec les combats
+
+	// Getters et Setters existants
 	public String getId() {
 		return id;
 	}
@@ -38,5 +43,14 @@ public class Trainer {
 
 	public void setTeam(List<Pokemon> team) {
 		this.team = team;
+	}
+
+	// Ajout des getters et setters pour combats
+	public Set<Combat> getCombats() {
+		return combats;
+	}
+
+	public void setCombats(Set<Combat> combats) {
+		this.combats = combats;
 	}
 }
